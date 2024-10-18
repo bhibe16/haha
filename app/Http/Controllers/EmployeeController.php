@@ -6,16 +6,23 @@ use Illuminate\Http\Request;
 use App\Models\Employee;
 use App\Models\EmploymentHistory; // Make sure to use the correct namespace
 use App\Models\AdminHr;
+use App\Models\Document; // Import the Document model
 use Illuminate\Support\Facades\Storage;
 
 class EmployeeController extends Controller
 {
-    public function index(){
+    public function index()
+    {
+        // Fetch all employees
         $employees = Employee::all();
+    
+        // Return the main employee list view
         return view('employees.index', ['employees' => $employees]);
     }
+    
 
-    public function create(){
+    public function create()
+    {
         return view('employees.create');
     }
 
@@ -52,11 +59,13 @@ class EmployeeController extends Controller
         return redirect()->route('employee.index')->with('success', 'New Employee created successfully.');
     }
 
-    public function edit(Employee $employee){
+    public function edit(Employee $employee)
+    {
         return view('employees.edit', ['employee' => $employee]);
     }
 
-    public function update(Employee $employee, Request $request){
+    public function update(Employee $employee, Request $request)
+    {
         $data = $request->validate([
             'First_name' => 'required',
             'Last_name' => 'required',
@@ -78,7 +87,8 @@ class EmployeeController extends Controller
         return redirect(route('employee.index'))->with('success', 'Updated Successfully');
     }
 
-    public function destroy(Employee $employee){
+    public function destroy(Employee $employee)
+    {
         $employee->delete();
         return redirect(route('employee.index'))->with('success', 'Deleted Successfully');
     }
@@ -90,15 +100,59 @@ class EmployeeController extends Controller
     }
 
     public function history($employee)
-{
-    // Fetch the employee using the ID
-    $employee = Employee::findOrFail($employee);
-    
-    // Fetch the employment history for this employee
-    $history = EmploymentHistory::where('employee_id', $employee->id)->get(); 
+    {
+        // Fetch the employee using the ID
+        $employee = Employee::findOrFail($employee);
+        
+        // Fetch the employment history for this employee
+        $history = EmploymentHistory::where('employee_id', $employee->id)->get(); 
 
-    // Return the view with the employee and history data
-    return view('employees.history.index', compact('employee', 'history'));
+        // Return the view with the employee and history data
+        return view('employees.history.index', compact('employee', 'history'));
+    }
+
+    public function documents($id)
+{
+    // Retrieve the employee and their documents
+    $employee = Employee::with('documents')->find($id);
+
+    // Check if the employee exists
+    if (!$employee) {
+        return redirect()->back()->with('error', 'Employee not found.');
+    }
+
+    // Return the view for the documents
+    return view('employees.documents.index', compact('employee'));
 }
+public function uploadDocument(Request $request, $id)
+{
+    // Validate the request data
+    $request->validate([
+        'name' => 'required|string|max:255',
+        'file' => 'required|file|mimes:pdf,xlsx,xls,docx,doc|max:2048', // Adjusted to include Excel and Word formats
+    ]);
+
+    if ($request->hasFile('file')) {
+        // Debugging: Check if the file is received
+        \Log::info('File received:', ['file' => $request->file('file')]);
+
+        // Handle the file upload
+        $path = $request->file('file')->store('documents', 'public');
+
+        // Create the new document
+        $document = new Document();
+        $document->employee_id = $id;
+        $document->name = $request->input('name');
+        $document->file_path = $path;
+        $document->save();
+
+        return redirect()->route('employee.documents', ['id' => $id])
+                         ->with('success', 'Document uploaded successfully.');
+    } else {
+        \Log::warning('No file uploaded');
+        return redirect()->back()->with('error', 'No file uploaded.');
+    }
+}
+
 
 }

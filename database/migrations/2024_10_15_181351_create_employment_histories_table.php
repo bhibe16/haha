@@ -13,6 +13,8 @@ class CreateEmploymentHistoriesTable extends Migration
             $table->foreignId('employee_id')->constrained()->onDelete('cascade'); // Foreign key reference
             $table->string('job_title'); // Updated field name to match the controller
             $table->string('company_name'); // Updated field name to match the controller
+            $table->string('location');
+            $table->string('job_responsibilities');
             $table->date('start_date');
             $table->date('end_date')->nullable(); // Nullable in case the employee is still employed
             $table->text('description')->nullable(); // Optional description

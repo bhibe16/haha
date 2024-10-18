@@ -98,6 +98,8 @@
                 <tr>
                     <th class="px-4 py-2">Job Title</th>
                     <th class="px-4 py-2">Company Name</th>
+                    <th class="px-4 py-2">Location</th>
+                    <th class="px-4 py-2">Job Responsibilities</th>
                     <th class="px-4 py-2">Start Date</th>
                     <th class="px-4 py-2">End Date</th>
                     <th class="px-4 py-2">Actions</th>
@@ -108,6 +110,8 @@
                     <tr>
                         <td class="border px-4 py-2">{{ $entry->job_title }}</td>
                         <td class="border px-4 py-2">{{ $entry->company_name }}</td>
+                        <td class="border px-4 py-2">{{ $entry->location }}</td>
+                        <td class="border px-4 py-2">{{ $entry->job_responsibilities }}</td>
                         <td class="border px-4 py-2">{{ $entry->start_date }}</td>
                         <td class="border px-4 py-2">{{ $entry->end_date ?? 'Present' }}</td>
                         <td class="border px-4 py-2 flex justify-around">

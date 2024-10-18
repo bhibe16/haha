@@ -87,12 +87,16 @@
 
     
 
-        <div class="w-full md:w-1/2 mx-auto ">
+        <div class="w-full md:w-5/6 lg:w-3/4 mx-auto bg-white dark:bg-[#404040] p-6 rounded-lg shadow-lg">
+        <h2 class="text-2xl font-semibold mb-6 text-center text-gray-800 dark:text-white">Edit Employee</h2>
+
             <form method="POST" action="{{ route('employee.update', ['employee' => $employee]) }}" class="bg-white text-black dark:bg-[#404040] dark:text-white p-6 rounded-lg">
                 @csrf 
                 @method('put')
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+
                 <div class="mb-4">
-                    <h1 class="text-2xl font-bold mb-4 text-black dark:text-white">Edit employee</h1>
                     <label>First Name</label>
                     <input type="text" name="First_name" placeholder="First Name" value="{{ $employee->First_name }}" class="w-full p-2 border text-black border-gray-300 rounded focus:outline-none focus:ring focus:ring-blue-200" />
                 </div>
@@ -157,6 +161,7 @@
                 </div>
             </form>
         </div>
+    
     </main>
 @vite('resources/js/app.js')
 </body>

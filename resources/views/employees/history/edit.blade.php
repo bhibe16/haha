@@ -10,6 +10,12 @@
     
     <label for="company_name">Company Name</label>
     <input type="text" name="company_name" value="{{ $history->company_name }}">
+
+    <label for="location">Location</label>
+    <input type="text" name="location" value="{{ $history->location }}">
+
+    <label for="job_responsibilities">Job Responsibilities</label>
+    <input type="text" name="job_responsibilities" value="{{ $history->job_responsibilities }}">
     
     <label for="start_date">Start Date</label>
     <input type="date" name="start_date" value="{{ $history->start_date }}">

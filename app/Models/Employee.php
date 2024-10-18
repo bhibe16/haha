@@ -25,4 +25,9 @@ class Employee extends Model
         'Employment_status',
         'image'
     ];
+
+    public function documents()
+    {
+        return $this->hasMany(Document::class); // Assuming you have a Document model
+    }
 }

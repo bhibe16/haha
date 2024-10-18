@@ -51,3 +51,15 @@ Route::prefix('employee/{employee}')->group(function () {
 });
 
 Route::get('employee/{id}/history', [EmploymentHistoryController::class, 'show'])->name('employee.history');
+
+Route::get('/employee/{id}/documents', [EmployeeController::class, 'documents'])->name('employee.documents');
+
+
+
+Route::get('/employee/{id}/upload-document', [EmployeeController::class, 'showUploadForm'])->name('document.upload.form');
+// Fix the method name here:
+Route::get('employee/{id}/documents', [EmployeeController::class, 'documents'])->name('employee.documents');
+Route::post('employee/{id}/upload', [EmployeeController::class, 'uploadDocument'])->name('employee.upload');
+
+
+

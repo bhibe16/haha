@@ -21,8 +21,13 @@
         </div>
         <h1 class="text-2xl flex-grow text-center">Human Resources Information System</h1>
         <div class="flex items-center space-x-4">
-            <span class="material-icons cursor-pointer">search</span>
-            <span class="material-icons cursor-pointer">notifications</span>
+            
+             <!-- Displaying the time inside a Material Icon -->
+             <div class="flex items-center space-x-1">
+                <span class="material-icons">access_time</span>
+                <span id="time" class="text-lg font-bold text-black dark:text-white"></span>
+            </div>
+
             <button id="theme-toggle" class="material-icons cursor-pointer focus:outline-none">brightness_6</button>
             <button class="material-icons cursor-pointer">account_circle</button>
         </div>
@@ -86,49 +91,56 @@
     <div class="bg-gradient-to-r from-yellow-100 via-yellow-200 to-yellow-300 dark:from-gray-700 dark:via-gray-800 dark:to-gray-900 p-10 rounded-lg shadow-lg mb-6 w-full max-w-2xl text-center">
     <h2 class="text-4xl font-bold text-black dark:text-white">Welcome HR3 Admin!</h2>
     </div>
+<br>
+<br>
+<br>
+<br>
+   <!-- Calendar Area -->
+<div class="calendar-container absolute top-11 right-0 p-5">
+    <div class="bg-white dark:bg-[#202020] p-4 rounded-lg shadow-lg w-96 max-w-xs text-center mb-6">
+        @php
+            use Carbon\Carbon;
+            $currentDate = Carbon::now();
+            $currentMonth = $currentDate->format('F');
+            $currentYear = $currentDate->format('Y');
+            $firstDayOfMonth = $currentDate->copy()->startOfMonth();
+            $lastDayOfMonth = $currentDate->copy()->endOfMonth();
+            $firstDayOfWeek = $firstDayOfMonth->dayOfWeek;
+        @endphp
 
-    <!-- Calendar Area -->
-    <div class="calendar-container">
-        <div class="bg-white dark:bg-[#202020] p-5 rounded-lg shadow-lg w-80 max-w-xs text-center mb-6">
-            @php
-                use Carbon\Carbon;
-                $currentDate = Carbon::now();
-                $currentMonth = $currentDate->format('F');
-                $currentYear = $currentDate->format('Y');
-                $firstDayOfMonth = $currentDate->copy()->startOfMonth();
-                $lastDayOfMonth = $currentDate->copy()->endOfMonth();
-                $firstDayOfWeek = $firstDayOfMonth->dayOfWeek;
-            @endphp
-
-            <!-- Month and Year Display -->
-            <h2 class="text-2xl font-bold text-black dark:text-white mb-4">{{ $currentMonth }} {{ $currentYear }}</h2>
+        <!-- Month and Year Display -->
+        <h2 class="text-2xl font-bold text-black dark:text-white mb-4">{{ $currentMonth }} {{ $currentYear }}</h2>
+        
+        <div class="grid grid-cols-7 text-center gap-1">
+            <!-- Days of the Week -->
+            <div class="font-bold text-black dark:text-white">Sun</div>
+            <div class="font-bold text-black dark:text-white">Mon</div>
+            <div class="font-bold text-black dark:text-white">Tue</div>
+            <div class="font-bold text-black dark:text-white">Wed</div>
+            <div class="font-bold text-black dark:text-white">Thu</div>
+            <div class="font-bold text-black dark:text-white">Fri</div>
+            <div class="font-bold text-black dark:text-white">Sat</div>
             
-            <div class="grid grid-cols-7 text-center gap-1">
-                <!-- Days of the Week -->
-                <div class="font-bold">Sun</div>
-                <div class="font-bold">Mon</div>
-                <div class="font-bold">Tue</div>
-                <div class="font-bold">Wed</div>
-                <div class="font-bold">Thu</div>
-                <div class="font-bold">Fri</div>
-                <div class="font-bold">Sat</div>
-                
-                <!-- Empty cells for days before the start of the month -->
-                @for ($i = 0; $i < $firstDayOfWeek; $i++)
-                    <div class="py-2"></div>
-                @endfor
+            <!-- Empty cells for days before the start of the month -->
+            @for ($i = 0; $i < $firstDayOfWeek; $i++)
+                <div class="py-2"></div>
+            @endfor
 
-                <!-- Days of the current month -->
-                @for ($day = 1; $day <= $lastDayOfMonth->day; $day++)
-                    @php
-                        $dayDate = Carbon::createFromDate($currentDate->year, $currentDate->month, $day);
-                    @endphp
-                    <div class="py-2 {{ $dayDate->isToday() ? 'bg-yellow-300 text-white rounded-full' : 'text-black dark:text-white' }}">
-                        {{ $day }}
-                    </div>
-                @endfor
-            </div>
+            <!-- Days of the current month -->
+            @for ($day = 1; $day <= $lastDayOfMonth->day; $day++)
+                @php
+                    $dayDate = Carbon::createFromDate($currentDate->year, $currentDate->month, $day);
+                @endphp
+                <div class="py-2 {{ $dayDate->isToday() ? 'bg-yellow-300 text-white rounded-full' : 'text-black dark:text-white' }}">
+                    {{ $day }}
+                </div>
+            @endfor
         </div>
+    </div>
+</div>
+
+
+
 
     
 
@@ -174,5 +186,17 @@
         </div>
     </main>
     @vite('resources/js/app.js')
+    <script>
+        // Function to update time inside the icon
+        function updateTime() {
+            const timeElement = document.getElementById('time');
+            const currentTime = new Date().toLocaleTimeString();
+            timeElement.textContent = currentTime;
+        }
+
+        // Update the time every second
+        setInterval(updateTime, 1000);
+        updateTime(); // Call it initially to avoid delay
+    </script>
 </body>
 </html>

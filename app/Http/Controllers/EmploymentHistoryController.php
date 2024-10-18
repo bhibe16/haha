@@ -35,6 +35,8 @@ class EmploymentHistoryController extends Controller
         $validatedData = $request->validate([
             'job_title' => 'required|string|max:255', // Correct field name
             'company_name' => 'required|string|max:255', // Correct field name
+            'location' => 'required|string|max:255', // Correct field name
+            'job_responsibilities' => 'required|string|max:255', // Correct field name
             'start_date' => 'required|date',
             'end_date' => 'nullable|date|after_or_equal:start_date',
         ]);
@@ -59,8 +61,10 @@ class EmploymentHistoryController extends Controller
         $history = EmploymentHistory::findOrFail($historyId);
 
         $validatedData = $request->validate([
-            'job_title' => 'required|string|max:255', // Match the migration field name
-            'company_name' => 'required|string|max:255', // Match the migration field name
+            'job_title' => 'required|string|max:255', // Correct field name
+            'company_name' => 'required|string|max:255', // Correct field name
+            'location' => 'required|string|max:255', // Correct field name
+            'job_responsibilities' => 'required|string|max:255', // Correct field name
             'start_date' => 'required|date',
             'end_date' => 'nullable|date|after_or_equal:start_date',
         ]);

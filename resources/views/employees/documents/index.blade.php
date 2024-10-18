@@ -64,59 +64,51 @@
 
     <!-- Main Content Area -->
     <main class="maincontent p-4">
-       <!-- Create Employment History Form -->
-<div class="w-full md:w-3/4 lg:w-1/2 mx-auto bg-white dark:bg-[#404040] p-6 rounded-lg shadow-lg">
-    <h2 class="text-2xl font-semibold mb-6 text-center text-gray-800 dark:text-white">
-        Add Employment History for {{ $employee->First_name }} {{ $employee->Last_name }}
-    </h2>
-
-    <form action="{{ route('employee.history.store', $employee->id) }}" method="POST" class="space-y-4">
-        @csrf
-
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            <!-- Job Title Field -->
+        <h2 class="text-xl font-semibold mb-4">Document for {{ $employee->First_name }} {{ $employee->Last_name }}</h2>
+        
+        <!-- Document Upload Form -->
+        <form action="{{ route('employee.upload', ['id' => $employee->id]) }}" method="POST" enctype="multipart/form-data">
+            @csrf
             <div class="mb-4">
-                <label for="job_title" class="block text-sm font-medium text-gray-700">Job Title</label>
-                <input type="text" name="job_title" id="job_title" value="{{ old('job_title') }}" required class="w-full p-2 border border-gray-300 rounded" />
+                <label for="name" class="block text-sm font-medium text-gray-700">Document Name:</label>
+                <input type="text" name="name" id="name" required class="mt-1 block w-full"/>
             </div>
-
-            <!-- Company Name Field -->
             <div class="mb-4">
-                <label for="company_name" class="block text-sm font-medium text-gray-700">Company Name</label>
-                <input type="text" name="company_name" id="company_name" value="{{ old('company_name') }}" required class="w-full p-2 border border-gray-300 rounded" />
+                <label for="document" class="block text-sm font-medium text-gray-700">Select Document:</label>
+                <input type="file" name="file" id="document" required class="mt-1 block w-full text-sm text-gray-500
+                file:mr-4 file:py-2 file:px-4
+                file:rounded file:border-0
+                file:text-sm file:font-semibold
+                file:bg-gray-50 file:text-gray-700
+                hover:file:bg-gray-100"/>
             </div>
+            <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Upload Document</button>
+        </form>
 
-            <!-- Location Field -->
-            <div class="mb-4">
-                <label for="location" class="block text-sm font-medium text-gray-700">Location</label>
-                <input type="text" name="location" id="location" value="{{ old('location') }}" required class="w-full p-2 border border-gray-300 rounded" />
+        <h2 class="text-xl font-semibold mt-8">Uploaded Documents</h2>
+        
+        @if($employee->documents->isEmpty())
+            <p>No documents uploaded yet.</p>
+        @else
+            <ul class="mt-4">
+                @foreach($employee->documents as $document)
+                    <li>
+                        <a href="{{ Storage::url($document->file_path) }}" class="text-blue-500" target="_blank">{{ $document->name }}</a>
+                        <span class="text-gray-500"> (Uploaded on {{ $document->created_at->format('d-m-Y') }})</span>
+                    </li>
+                @endforeach
+            </ul>
+        @endif
+        
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
             </div>
-
-            <!-- Job Responsibilities Field -->
-            <div class="mb-4">
-                <label for="job_responsibilities" class="block text-sm font-medium text-gray-700">Job Responsibilities</label>
-                <input type="text" name="job_responsibilities" id="job_responsibilities" value="{{ old('job_responsibilities') }}" required class="w-full p-2 border border-gray-300 rounded" />
-            </div>
-
-            <!-- Start Date Field -->
-            <div class="mb-4">
-                <label for="start_date" class="block text-sm font-medium text-gray-700">Start Date</label>
-                <input type="date" name="start_date" id="start_date" value="{{ old('start_date') }}" required class="w-full p-2 border border-gray-300 rounded" />
-            </div>
-
-            <!-- End Date Field -->
-            <div class="mb-4">
-                <label for="end_date" class="block text-sm font-medium text-gray-700">End Date</label>
-                <input type="date" name="end_date" id="end_date" value="{{ old('end_date') }}" class="w-full p-2 border border-gray-300 rounded" />
-            </div>
-        </div>
-
-        <button type="submit" class="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Add History</button>
-    </form>
-
-    <a href="{{ route('employee.history.index', $employee->id) }}" class="block text-center text-blue-600 hover:underline mt-4">Back to History</a>
-</div>
-
+        @endif
     </main>
 
     @vite('resources/js/app.js')

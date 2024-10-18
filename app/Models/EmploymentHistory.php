@@ -17,6 +17,9 @@ class EmploymentHistory extends Model
         'employee_id', // Foreign key referencing the Employee model
         'job_title',
         'company_name',
+        'location',
+        'job_responsibilities',
+        'company_name',
         'start_date',
         'end_date',
         'description',
