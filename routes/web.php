@@ -8,19 +8,17 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\ImageUploadController;
 
+// Home Route
 Route::get('/', function () {
     return view('admin/login');
 });
 
-Route::get('/welcome', function () {
-    return view('welcome'); // Ensure 'welcome.blade.php' exists in 'resources/views'
-});
 
-// Show the login form
+// Login Routes
 Route::get('admin/hr/login', [LoginController::class, 'showLoginForm'])->name('login.form');
 Route::post('admin/hr/login', [LoginController::class, 'login'])->name('login.submit');
 
-// **The correct dashboard route**
+// Dashboard Route
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
 // CRUD Routes for Employee
@@ -31,13 +29,13 @@ Route::get('/employee/{employee}/edit', [EmployeeController::class, 'edit'])->na
 Route::put('/employee/{employee}/update', [EmployeeController::class, 'update'])->name('employee.update');
 Route::delete('/employee/{employee}/destroy', [EmployeeController::class, 'destroy'])->name('employee.destroy');
 
-// Logout route
+// Logout Route
 Route::post('/logout', function () {
     Auth::logout();
     return redirect('/');
 })->name('logout');
 
-// Image upload route
+// Image Upload Route
 Route::post('/image-upload', [ImageUploadController::class, 'upload'])->name('image.upload');
 
 // Employment History Routes
@@ -50,16 +48,16 @@ Route::prefix('employee/{employee}')->group(function () {
     Route::delete('/history/{history}', [EmploymentHistoryController::class, 'destroy'])->name('employee.history.destroy');
 });
 
+// Employee History View
 Route::get('employee/{id}/history', [EmploymentHistoryController::class, 'show'])->name('employee.history');
 
+// Documents Routes
 Route::get('/employee/{id}/documents', [EmployeeController::class, 'documents'])->name('employee.documents');
+Route::post('/employee/{id}/upload-document', [EmployeeController::class, 'uploadDocument'])->name('employee.uploadDocument');
 
-
-
-Route::get('/employee/{id}/upload-document', [EmployeeController::class, 'showUploadForm'])->name('document.upload.form');
-// Fix the method name here:
-Route::get('employee/{id}/documents', [EmployeeController::class, 'documents'])->name('employee.documents');
-Route::post('employee/{id}/upload', [EmployeeController::class, 'uploadDocument'])->name('employee.upload');
+// Contracts Routes
+Route::get('/employee/{id}/contracts', [EmployeeController::class, 'contracts'])->name('employee.contracts');
+Route::post('/employee/{id}/upload-contract', [EmployeeController::class, 'uploadContract'])->name('employee.uploadContract');
 
 
 

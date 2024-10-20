@@ -15,7 +15,7 @@ class AdminHrSeeder extends Seeder
         DB::table('admin_hr')->insert([
             'name' => 'Admin',
             'email' => 'admin@gmail.com',
-            'password' => bcrypt('yourpassword'), // Hash the password
+            'password' => bcrypt('hatdog'), // Hash the password
             'created_at' => now(),
             'updated_at' => now(),
         ]);

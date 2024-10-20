@@ -7,6 +7,7 @@ use App\Models\Employee;
 use App\Models\EmploymentHistory; // Make sure to use the correct namespace
 use App\Models\AdminHr;
 use App\Models\Document; // Import the Document model
+use App\Models\Contract;
 use Illuminate\Support\Facades\Storage;
 
 class EmployeeController extends Controller
@@ -148,6 +149,50 @@ public function uploadDocument(Request $request, $id)
 
         return redirect()->route('employee.documents', ['id' => $id])
                          ->with('success', 'Document uploaded successfully.');
+    } else {
+        \Log::warning('No file uploaded');
+        return redirect()->back()->with('error', 'No file uploaded.');
+    }
+}
+
+public function contracts($id)
+{
+    // Retrieve the employee and their contracts
+    $employee = Employee::with('contracts')->find($id);
+
+    // Check if the employee exists
+    if (!$employee) {
+        return redirect()->back()->with('error', 'Employee not found.');
+    }
+
+    // Return the view for the contracts
+    return view('employees.contracts.index', compact('employee'));
+}
+
+public function uploadContract(Request $request, $id)
+{
+    // Validate the request data
+    $request->validate([
+        'name' => 'required|string|max:255',
+        'file' => 'required|file|mimes:pdf,xlsx,xls,docx,doc|max:2048', // Adjusted to include Excel and Word formats
+    ]);
+
+    if ($request->hasFile('file')) {
+        // Debugging: Check if the file is received
+        \Log::info('File received:', ['file' => $request->file('file')]);
+
+        // Handle the file upload
+        $path = $request->file('file')->store('contracts', 'public');
+
+        // Create the new contract
+        $contract = new Contract();
+        $contract->employee_id = $id;
+        $contract->name = $request->input('name');
+        $contract->file_path = $path;
+        $contract->save();
+
+        return redirect()->route('employee.contracts', ['id' => $id])
+                         ->with('success', 'Contract uploaded successfully.');
     } else {
         \Log::warning('No file uploaded');
         return redirect()->back()->with('error', 'No file uploaded.');

@@ -7,7 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     @vite('resources/css/app.css')
-    <title>HRIS - Documents</title>
+    <title>HRIS - Contracts</title>
 </head>
 <body class="relative">
 
@@ -63,37 +63,37 @@
 
     <!-- Main Content Area -->
     <main class="maincontent p-4">
-        <h2 class="text-xl font-semibold mb-4">Document for {{ $employee->First_name }} {{ $employee->Last_name }}</h2>
+        <h2 class="text-xl font-semibold mb-4">Contract for {{ $employee->First_name }} {{ $employee->Last_name }}</h2>
         
-        <!-- Document Upload Form -->
-        <form action="{{ route('employee.uploadDocument', ['id' => $employee->id]) }}" method="POST" enctype="multipart/form-data">
+        <!-- Contract Upload Form -->
+        <form action="{{ route('employee.uploadContract', ['id' => $employee->id]) }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="mb-4">
-                <label for="name" class="block text-sm font-medium text-gray-700">Document Name:</label>
+                <label for="name" class="block text-sm font-medium text-gray-700">Contract Name:</label>
                 <input type="text" name="name" id="name" required class="mt-1 block w-full"/>
             </div>
             <div class="mb-4">
-                <label for="document" class="block text-sm font-medium text-gray-700">Select Document:</label>
-                <input type="file" name="file" id="document" required class="mt-1 block w-full text-sm text-gray-500
+                <label for="contract" class="block text-sm font-medium text-gray-700">Select Contract:</label>
+                <input type="file" name="file" id="contract" required class="mt-1 block w-full text-sm text-gray-500
                 file:mr-4 file:py-2 file:px-4
                 file:rounded file:border-0
                 file:text-sm file:font-semibold
                 file:bg-gray-50 file:text-gray-700
                 hover:file:bg-gray-100"/>
             </div>
-            <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Upload Document</button>
+            <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Upload Contract</button>
         </form>
 
-        <h2 class="text-xl font-semibold mt-8">Uploaded Documents</h2>
+        <h2 class="text-xl font-semibold mt-8">Uploaded Contracts</h2>
         
-        @if($employee->documents->isEmpty())
-            <p>No documents uploaded yet.</p>
+        @if($employee->contracts->isEmpty())
+            <p>No contracts uploaded yet.</p>
         @else
             <ul class="mt-4">
-                @foreach($employee->documents as $document)
+                @foreach($employee->contracts as $contract)
                     <li>
-                        <a href="{{ Storage::url($document->file_path) }}" class="text-blue-500" target="_blank">{{ $document->name }}</a>
-                        <span class="text-gray-500"> (Uploaded on {{ $document->created_at->format('d-m-Y') }})</span>
+                        <a href="{{ Storage::url($contract->file_path) }}" class="text-blue-500" target="_blank">{{ $contract->name }}</a>
+                        <span class="text-gray-500"> (Uploaded on {{ $contract->created_at->format('d-m-Y') }})</span>
                     </li>
                 @endforeach
             </ul>
