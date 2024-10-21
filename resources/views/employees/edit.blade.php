@@ -15,7 +15,6 @@
     <!-- Navbar -->
     <nav class="navbar">
         <div class="flex items-center">
-<<<<<<< HEAD
         </div>
         <h1 class="text-2xl flex-grow text-center">Human Resources Information System</h1>
         <div class="flex items-center space-x-4">
@@ -74,36 +73,6 @@
                     </a>
                 </li>
                 
-=======
-            <button id="menu-toggle" class="sm:hidden">
-                <span class="material-icons">menu</span>
-            </button>
-        </div>
-        <h1 class="text-2xl flex-grow text-center">Human Resources Information System</h1>
-        <div class="flex items-center space-x-4">
-            <span class="material-icons cursor-pointer">search</span>
-            <span class="material-icons cursor-pointer">notifications</span>
-            <button id="theme-toggle" class="material-icons cursor-pointer focus:outline-none">brightness_6</button>
-            <button class="material-icons cursor-pointer">account_circle</button>
-        </div>
-    </nav>
-
-    <!-- Sidebar -->
-    <aside id="default-sidebar" class="sidebar">
-        <div class="h-full px-3 py-4 overflow-y-auto">
-            <div class="flex justify-end sm:hidden">
-                <button id="sidebar-close">
-                    <span class="material-icons">close</span>
-                </button>
-            </div>
-            <br>
-            <ul class=" space-y-2 font-medium">
-                <li class="flex justify-center">
-                    <a href="dashboard">
-                        <img src="{{ asset('images/logo.png') }}" alt="Logo" class="w-16 h-16"> <!-- Update the path accordingly -->
-                    </a>
-                </li>
->>>>>>> 21da00b81c47fcf9d373c4a1150aa33edc9152f0
                 <li class="relative">
                     <a href="{{ route('employee.index') }}" class="hover-d">
                         <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 fill-current text-black dark:text-white" viewBox="0 -960 960 960">
@@ -112,41 +81,9 @@
                         <span class="ml-3">Employee Records</span>
                     </a>
 
-<<<<<<< HEAD
                     
                 </li>
 </aside>
-=======
-                    <!-- Dropdown Button -->
-                    <button id="dropdownButton" class="flex items-center justify-between w-full p-2 text-gray-200 rounded hover:bg-gray-700 mt-1">
-                        <span>Others</span>
-                        <svg class="w-4 h-4 ml-2" fill="currentColor" viewBox="0 0 20 20">
-                            <path d="M5.5 8l4.5 4.5L14.5 8H5.5z"/>
-                        </svg>
-                    </button>
-                    
-                    <!-- Dropdown Menu -->
-                    <div id="dropdownMenu" class="absolute hidden bg-gray-800 text-white rounded shadow-lg mt-2 w-48">
-                        <a href="" class="block px-4 py-2 hover:bg-gray-700">Employee History</a>
-                        <a href="" class="block px-4 py-2 hover:bg-gray-700">Documents</a>
-                        <a href="" class="block px-4 py-2 hover:bg-gray-700">Contract</a>
-                    </div>
-                </li>
-                <li>
-                    <form method="POST" action="{{ route('logout') }}">
-                        @csrf
-                        <button type="submit" class="btn-logout">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6-4v12" />
-                            </svg>
-                            <span class="ml-3">Log Out</span>
-                        </button>
-                    </form>
-                </li>
-            </ul>
-        </div>
-    </aside>
->>>>>>> 21da00b81c47fcf9d373c4a1150aa33edc9152f0
 
     <!-- Main Content Area -->
     <main class="maincontent">
@@ -157,7 +94,6 @@
         <div class="w-full md:w-5/6 lg:w-3/4 mx-auto bg-white dark:bg-[#404040] p-6 rounded-lg shadow-lg">
         <h2 class="text-2xl font-semibold mb-6 text-center text-gray-800 dark:text-white">Edit Employee</h2>
 
-<<<<<<< HEAD
         @if ($errors->any())
     <div class="mb-4">
         <ul>
@@ -171,11 +107,6 @@
 <form method="POST" action="{{ route('employee.update', ['employee' => $employee->id]) }}" enctype="multipart/form-data" class="bg-white text-black dark:bg-[#404040] dark:text-white p-6 rounded-lg">
     @csrf 
     @method('put')
-=======
-            <form method="POST" action="{{ route('employee.update', ['employee' => $employee]) }}" class="bg-white text-black dark:bg-[#404040] dark:text-white p-6 rounded-lg">
-                @csrf 
-                @method('put')
->>>>>>> 21da00b81c47fcf9d373c4a1150aa33edc9152f0
 
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
 
@@ -239,7 +170,6 @@
                     <input type="text" name="Employment_status" placeholder="Employment Status" value="{{ $employee->Employment_status }}" class="w-full p-2 border text-black border-gray-300 rounded focus:outline-none focus:ring focus:ring-blue-200" />
                 </div>      
 
-<<<<<<< HEAD
                 <div class="mb-4">
         <label for="image">Profile Image</label>
         <input type="file" name="image" id="image" accept="image/*" class="w-full p-2 border text-black border-gray-300 rounded focus:outline-none focus:ring focus:ring-blue-200" />
@@ -248,19 +178,10 @@
          <div>
         <input type="submit" value="Update" class="w-full bg-blue-600 text-white p-2 rounded hover:bg-blue-500 transition" />
     </div>
-=======
-                <div>
-                    <input type="submit" value="Update" class="w-full bg-blue-600 text-white p-2 rounded hover:bg-blue-500 transition" />
-                </div>
->>>>>>> 21da00b81c47fcf9d373c4a1150aa33edc9152f0
             </form>
         </div>
     
     </main>
-<<<<<<< HEAD
-
-=======
->>>>>>> 21da00b81c47fcf9d373c4a1150aa33edc9152f0
 @vite('resources/js/app.js')
 </body>
 </html>

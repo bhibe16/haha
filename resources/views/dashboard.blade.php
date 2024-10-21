@@ -15,18 +15,11 @@
     <!-- Navbar -->
     <nav class="navbar">
         <div class="flex items-center">
-<<<<<<< HEAD
-=======
-            <button id="menu-toggle" class="sm:hidden">
-                <span class="material-icons">menu</span>
-            </button>
->>>>>>> 21da00b81c47fcf9d373c4a1150aa33edc9152f0
         </div>
         <h1 class="text-2xl flex-grow text-center">Human Resources Information System</h1>
         <div class="flex items-center space-x-4">
             
              <!-- Displaying the time inside a Material Icon -->
-<<<<<<< HEAD
              <div class="flex items-center space-x-2"> <!-- Parent flex container -->
     <div class="flex items-center space-x-1"> <!-- Time display -->
         <span class="material-icons">access_time</span>
@@ -73,37 +66,13 @@
 <!-- Sidebar -->
 <aside id="sidebar" class="sidebar hidden transition-transform transform -translate-x-full fixed top-0 left-0 w-64 h-full bg-gray-800 text-white">
 <br>
-=======
-             <div class="flex items-center space-x-1">
-                <span class="material-icons">access_time</span>
-                <span id="time" class="text-lg font-bold text-black dark:text-white"></span>
-            </div>
-
-            <button id="theme-toggle" class="material-icons cursor-pointer focus:outline-none">brightness_6</button>
-            <button class="material-icons cursor-pointer">account_circle</button>
-        </div>
-    </nav>
-
-    <!-- Sidebar -->
-    <aside id="default-sidebar" class="sidebar">
-        <div class="h-full px-3 py-4 overflow-y-auto">
-            <div class="flex justify-end sm:hidden">
-                <button id="sidebar-close">
-                    <span class="material-icons">close</span>
-                </button>
-            </div>
-            <br>
->>>>>>> 21da00b81c47fcf9d373c4a1150aa33edc9152f0
             <ul class=" space-y-2 font-medium">
                 <li class="flex justify-center">
                     <a href="dashboard">
                         <img src="{{ asset('images/logo.png') }}" alt="Logo" class="w-16 h-16"> <!-- Update the path accordingly -->
                     </a>
                 </li>
-<<<<<<< HEAD
                 
-=======
->>>>>>> 21da00b81c47fcf9d373c4a1150aa33edc9152f0
                 <li class="relative">
                     <a href="{{ route('employee.index') }}" class="hover-d">
                         <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 fill-current text-black dark:text-white" viewBox="0 -960 960 960">
@@ -112,41 +81,8 @@
                         <span class="ml-3">Employee Records</span>
                     </a>
 
-<<<<<<< HEAD
                     
 </aside>
-=======
-                    <!-- Dropdown Button -->
-                    <button id="dropdownButton" class="flex items-center justify-between w-full p-2 text-black dark:text-white hover-d mt-1">
-                        <span>Others</span>
-                        <svg class="w-4 h-4 ml-2" fill="currentColor" viewBox="0 0 20 20">
-                            <path d="M5.5 8l4.5 4.5L14.5 8H5.5z"/>
-                        </svg>
-                    </button>
-                    
-                    <!-- Dropdown Menu -->
-                    <div id="dropdownMenu" class="absolute hidden bg-gray-800 text-white rounded shadow-lg mt-2 w-48">
-                        <a href="" class="block px-4 py-2 hover:bg-gray-700">Employee History</a>
-                        <a href="" class="block px-4 py-2 hover:bg-gray-700">Documents</a>
-                        <a href="" class="block px-4 py-2 hover:bg-gray-700">Contract</a>
-                    </div>
-                </li>
-                <li>
-                    <form method="POST" action="{{ route('logout') }}">
-                        @csrf
-                        <button type="submit" class="btn-logout">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6-4v12" />
-                            </svg>
-                            <span class="ml-3">Log Out</span>
-                        </button>
-                    </form>
-                </li>
-            </ul>
-        </div>
-    </aside>
-
->>>>>>> 21da00b81c47fcf9d373c4a1150aa33edc9152f0
     <!-- Main Content Area -->
     <main class="maincontent">
     <div class="bg-gradient-to-r from-yellow-100 via-yellow-200 to-yellow-300 dark:from-gray-700 dark:via-gray-800 dark:to-gray-900 p-10 rounded-lg shadow-lg mb-6 w-full max-w-2xl text-center">
@@ -218,49 +154,32 @@
         <div class="flex justify-center items-center gap-6 w-full max-w-7xl text-black dark:text-white">
             <!-- Employee Card -->
             <div class="bg-card">
-<<<<<<< HEAD
                 <img src="/images/4.jpg" alt="Profile Image" class="rounded-full w-24 h-24 mb-4">
-=======
-                <img src="#" alt="Profile Image" class="rounded-full w-24 h-24 mb-4">
->>>>>>> 21da00b81c47fcf9d373c4a1150aa33edc9152f0
                 <h3 class="font-bold">John Doe</h3>
                 <p>Position: Manager</p>
                 <p>Department: HR</p>
             </div>
 
             <div class="bg-card">
-<<<<<<< HEAD
                 <img src="/images/3.jpg" alt="Profile Image" class="rounded-full w-24 h-24 mb-4">
-=======
-                <img src="#" alt="Profile Image" class="rounded-full w-24 h-24 mb-4">
->>>>>>> 21da00b81c47fcf9d373c4a1150aa33edc9152f0
                 <h3 class="font-bold">Jane Smith</h3>
                 <p>Position: Developer</p>
                 <p>Department: IT</p>
             </div>
 
             <div class="bg-card">
-<<<<<<< HEAD
                 <img src="/images/2.jpeg" alt="Profile Image" class="rounded-full w-24 h-24 mb-4">
-=======
-                <img src="#" alt="Profile Image" class="rounded-full w-24 h-24 mb-4">
->>>>>>> 21da00b81c47fcf9d373c4a1150aa33edc9152f0
                 <h3 class="font-bold">Michael Brown</h3>
                 <p>Position: Accountant</p>
                 <p>Department: Finance</p>
             </div>
 
             <div class="bg-card">
-<<<<<<< HEAD
                 <img src="/images/1.jpg" alt="Profile Image" class="rounded-full w-24 h-24 mb-4">
-=======
-                <img src="#" alt="Profile Image" class="rounded-full w-24 h-24 mb-4">
->>>>>>> 21da00b81c47fcf9d373c4a1150aa33edc9152f0
                 <h3 class="font-bold">Emily White</h3>
                 <p>Position: Designer</p>
                 <p>Department: Marketing</p>
             </div>
-<<<<<<< HEAD
 </div>
 <div class="w-full text-center bg-cover bg-center rounded-xl" style="background-image: url('/images/bg.webp');">
     <h3 class="text-3xl font-bold text-black dark:text-white mt-12">About the System</h3>
@@ -287,22 +206,3 @@
 
 </body>
 </html>
-=======
-        </div>
-    </main>
-    @vite('resources/js/app.js')
-    <script>
-        // Function to update time inside the icon
-        function updateTime() {
-            const timeElement = document.getElementById('time');
-            const currentTime = new Date().toLocaleTimeString();
-            timeElement.textContent = currentTime;
-        }
-
-        // Update the time every second
-        setInterval(updateTime, 1000);
-        updateTime(); // Call it initially to avoid delay
-    </script>
-</body>
-</html>
->>>>>>> 21da00b81c47fcf9d373c4a1150aa33edc9152f0

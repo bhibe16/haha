@@ -11,8 +11,4 @@
     </div>
 
     <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Upload Contract</button>
-<<<<<<< HEAD
 </form>
-=======
-</form>
->>>>>>> 21da00b81c47fcf9d373c4a1150aa33edc9152f0

@@ -15,7 +15,6 @@
     <!-- Navbar -->
     <nav class="navbar">
         <div class="flex items-center">
-<<<<<<< HEAD
         </div>
         <h1 class="text-2xl flex-grow text-center">Human Resources Information System</h1>
         <div class="flex items-center space-x-4">
@@ -70,30 +69,6 @@
 <!-- Sidebar -->
 <aside id="sidebar" class="sidebar hidden transition-transform transform -translate-x-full fixed top-0 left-0 w-64 h-full bg-gray-800 text-white">
 <br>
-=======
-            <button id="menu-toggle" class="sm:hidden">
-                <span class="material-icons">menu</span>
-            </button>
-        </div>
-        <h1 class="text-2xl flex-grow text-center">Human Resources Information System</h1>
-        <div class="flex items-center space-x-4">
-            <span class="material-icons cursor-pointer">search</span>
-            <span class="material-icons cursor-pointer">notifications</span>
-            <button id="theme-toggle" class="material-icons cursor-pointer focus:outline-none">brightness_6</button>
-            <button class="material-icons cursor-pointer">account_circle</button>
-        </div>
-    </nav>
-
-    <!-- Sidebar -->
-    <aside id="default-sidebar" class="sidebar">
-        <div class="h-full px-3 py-4 overflow-y-auto">
-            <div class="flex justify-end sm:hidden">
-                <button id="sidebar-close">
-                    <span class="material-icons">close</span>
-                </button>
-            </div>
-            <br>
->>>>>>> 21da00b81c47fcf9d373c4a1150aa33edc9152f0
             <ul class=" space-y-2 font-medium">
                 <li class="flex justify-center">
                     <a href="dashboard">
@@ -109,41 +84,9 @@
                         <span class="ml-3">Employee Records</span>
                     </a>
 
-<<<<<<< HEAD
                    
                 </li>
 </aside>
-=======
-                    <!-- Dropdown Button -->
-                    <button id="dropdownButton" class="flex items-center justify-between w-full p-2 text-black dark:text-white rounded hover-d mt-1">
-                        <span>Others</span>
-                        <svg class="w-4 h-4 ml-2" fill="currentColor" viewBox="0 0 20 20">
-                            <path d="M5.5 8l4.5 4.5L14.5 8H5.5z"/>
-                        </svg>
-                    </button>
-                    
-                    <!-- Dropdown Menu -->
-                    <div id="dropdownMenu" class="absolute hidden bg-gray-800 text-white rounded shadow-lg mt-2 w-48">
-                        <a href="" class="block px-4 py-2 hover:bg-gray-700">Employee History</a>
-                        <a href="" class="block px-4 py-2 hover:bg-gray-700">Documents</a>
-                        <a href="" class="block px-4 py-2 hover:bg-gray-700">Contract</a>
-                    </div>
-                </li>
-                <li>
-                    <form method="POST" action="{{ route('logout') }}">
-                        @csrf
-                        <button type="submit" class="btn-logout">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6-4v12" />
-                            </svg>
-                            <span class="ml-3">Log Out</span>
-                        </button>
-                    </form>
-                </li>
-            </ul>
-        </div>
-    </aside>
->>>>>>> 21da00b81c47fcf9d373c4a1150aa33edc9152f0
 
    <!-- Main Content Area -->
 <main class="maincontent">
@@ -193,11 +136,7 @@
             <div id="employeeModal{{ $employee->id }}" class="hidden fixed inset-0 bg-gray-800 bg-opacity-50 flex justify-center items-center z-50">
                 <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg w-1/2">
                     <div class="flex justify-between items-center mb-4">
-<<<<<<< HEAD
                         <h2 class="text-xl font-bold dark:text-white"></h2>
-=======
-                        <h2 class="text-xl font-bold dark:text-white">Employee Information</h2>
->>>>>>> 21da00b81c47fcf9d373c4a1150aa33edc9152f0
                         <button class="material-icons cursor-pointer" onclick="closeModal({{ $employee->id }})">close</button>
                     </div>
                     <div class="flex items-center justify-between mb-4">
@@ -228,11 +167,7 @@
 </div>
 
                     <div class="employee-details grid grid-cols-1 md:grid-cols-2 gap-6">
-<<<<<<< HEAD
                         <h3 class="text-xl font-semibold mb-4 col-span-1 md:col-span-2 center">Employee Information</h3>
-=======
-                        <h3 class="text-xl font-semibold mb-4 col-span-1 md:col-span-2">Employee Information</h3>
->>>>>>> 21da00b81c47fcf9d373c4a1150aa33edc9152f0
                     
                         <div class="detail-section bg-white dark:bg-[#404040] p-4 rounded-lg shadow-md mb-4">
                             <h4 class="text-lg font-semibold">Personal Details</h4>
@@ -260,7 +195,6 @@
                     </div>
                     
                     
-<<<<<<< HEAD
                     <div class="flex justify-end mt-2 space-x-2 items-center">
     <a href="{{ route('employee.edit', ['employee' => $employee->id]) }}" class="text-yellow-500 hover:text-yellow-300 text-lg">Edit</a> <!-- Added text-lg for larger font size -->
 
@@ -271,26 +205,11 @@
     </form>
 </div>
 
-=======
-                    <div class="flex justify-end mt-4 space-x-2 items-center">
-                        <a href="{{ route('employee.edit', ['employee' => $employee->id]) }}" class="text-yellow-500 hover:text-yellow-300">Edit</a>
-
-                        <form method="post" action="{{ route('employee.destroy', ['employee' => $employee]) }}">
-                            @csrf
-                            @method('delete')
-                            <input type="submit" class="text-red-500 hover:text-red-300" value="Delete" />
-                        </form>
-                    </div>
->>>>>>> 21da00b81c47fcf9d373c4a1150aa33edc9152f0
                 </div>
             </div>
         @endforeach
     </div>
 </main>
-<<<<<<< HEAD
-=======
-
->>>>>>> 21da00b81c47fcf9d373c4a1150aa33edc9152f0
 @vite('resources/js/app.js')
 </body>
 </html>
