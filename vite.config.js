@@ -8,8 +8,4 @@ export default defineConfig({
             refresh: true,
         }),
     ],
-<<<<<<< HEAD
 });
-=======
-});
->>>>>>> 21da00b81c47fcf9d373c4a1150aa33edc9152f0

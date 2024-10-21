@@ -32,14 +32,9 @@
     cursor: pointer;
 }
 
-<<<<<<< HEAD
 body {
     font-family: 'Roboto Slab', serif;
     @apply bg-gradient-to-b from-orange-300 via-yellow-50 to-white dark:from-orange-300 dark:via-yellow-50 dark:to-gray-600;
-=======
-.body {
-    font-family: 'Roboto Slab', serif;
->>>>>>> 21da00b81c47fcf9d373c4a1150aa33edc9152f0
 }
 
 .navbar {
@@ -60,11 +55,7 @@ body {
 }
 
 .maincontent {
-<<<<<<< HEAD
     @apply p-8 sm:ml-64 min-h-screen;
-=======
-    @apply bg-gradient-to-b from-orange-300 via-yellow-50 to-white dark:from-orange-300 dark:via-yellow-50 dark:to-gray-600 p-8 sm:ml-64 min-h-screen;
->>>>>>> 21da00b81c47fcf9d373c4a1150aa33edc9152f0
 }
 
 .btn-logout {
@@ -78,9 +69,6 @@ body {
 .bg-card {
     @apply bg-white dark:bg-[#202020] rounded-lg shadow-lg flex flex-col items-center w-full sm:w-1/4;
 }
-<<<<<<< HEAD
 .hidden {
     display: none;
 }
-=======
->>>>>>> 21da00b81c47fcf9d373c4a1150aa33edc9152f0
