@@ -4,9 +4,15 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Employee;
+<<<<<<< HEAD
 use App\Models\EmploymentHistory;
 use App\Models\AdminHr;
 use App\Models\Document;
+=======
+use App\Models\EmploymentHistory; // Make sure to use the correct namespace
+use App\Models\AdminHr;
+use App\Models\Document; // Import the Document model
+>>>>>>> 21da00b81c47fcf9d373c4a1150aa33edc9152f0
 use App\Models\Contract;
 use Illuminate\Support\Facades\Storage;
 
@@ -14,9 +20,19 @@ class EmployeeController extends Controller
 {
     public function index()
     {
+<<<<<<< HEAD
         $employees = Employee::all();
         return view('employees.index', ['employees' => $employees]);
     }
+=======
+        // Fetch all employees
+        $employees = Employee::all();
+    
+        // Return the main employee list view
+        return view('employees.index', ['employees' => $employees]);
+    }
+    
+>>>>>>> 21da00b81c47fcf9d373c4a1150aa33edc9152f0
 
     public function create()
     {
@@ -25,11 +41,16 @@ class EmployeeController extends Controller
 
     public function store(Request $request)
     {
+<<<<<<< HEAD
+=======
+        // Validate the form inputs
+>>>>>>> 21da00b81c47fcf9d373c4a1150aa33edc9152f0
         $validatedData = $request->validate([
             'First_name' => 'required|string',
             'Last_name' => 'required|string',
             'Department' => 'required|string',
             'Position' => 'required|string',
+<<<<<<< HEAD
             'Email' => 'required|string|email',
             'Phone' => 'required|string',
             'Address' => 'required|string',
@@ -48,6 +69,30 @@ class EmployeeController extends Controller
         }
 
         Employee::create($validatedData);
+=======
+            'Email' => 'required|string',
+            'Phone' => 'required|string',
+            'Address' => 'required|string',
+            'Date_of_birth' => 'required|string',
+            'Gender' => 'required|string',
+            'Nationality' => 'required|string',
+            'Marital_status' => 'required|string',
+            'Start_date' => 'required|string',
+            'Employment_status' => 'required|string',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Image validation
+        ]);
+
+        // Handle file upload
+        if ($request->hasFile('image')) {
+            // Store the image in the 'public' disk (storage/app/public) and get the path
+            $imagePath = $request->file('image')->store('images', 'public');
+            $validatedData['image'] = $imagePath; // Store the image path in the DB
+        }
+
+        // Save the employee record
+        Employee::create($validatedData);
+
+>>>>>>> 21da00b81c47fcf9d373c4a1150aa33edc9152f0
         return redirect()->route('employee.index')->with('success', 'New Employee created successfully.');
     }
 
@@ -56,6 +101,7 @@ class EmployeeController extends Controller
         return view('employees.edit', ['employee' => $employee]);
     }
 
+<<<<<<< HEAD
     public function update(Request $request, Employee $employee)
     {
         $validatedData = $request->validate([
@@ -83,6 +129,29 @@ class EmployeeController extends Controller
         }
 
         return redirect()->route('employee.index')->with('success', 'Employee updated successfully.');
+=======
+    public function update(Employee $employee, Request $request)
+    {
+        $data = $request->validate([
+            'First_name' => 'required',
+            'Last_name' => 'required',
+            'Department' => 'required',
+            'Position' => 'nullable',
+            'Email' => 'required',
+            'Phone' => 'required',
+            'Address' => 'required',
+            'Date_of_birth' => 'required',
+            'Gender' => 'required',
+            'Nationality' => 'required',
+            'Marital_status' => 'required',
+            'Start_date' => 'required',
+            'Employment_status' => 'required',
+        ]);
+
+        $employee->update($data);
+
+        return redirect(route('employee.index'))->with('success', 'Updated Successfully');
+>>>>>>> 21da00b81c47fcf9d373c4a1150aa33edc9152f0
     }
 
     public function destroy(Employee $employee)
@@ -94,20 +163,35 @@ class EmployeeController extends Controller
     public function search(Request $request)
     {
         $query = $request->input('query');
+<<<<<<< HEAD
         $employees = Employee::where('First_name', 'like', "%{$query}%")
                             ->orWhere('Last_name', 'like', "%{$query}%")
                             ->get();
         return view('employees.index', ['employees' => $employees]);
+=======
+        // Implement search logic here
+>>>>>>> 21da00b81c47fcf9d373c4a1150aa33edc9152f0
     }
 
     public function history($employee)
     {
+<<<<<<< HEAD
         $employee = Employee::findOrFail($employee);
         $history = EmploymentHistory::where('employee_id', $employee->id)->get();
+=======
+        // Fetch the employee using the ID
+        $employee = Employee::findOrFail($employee);
+        
+        // Fetch the employment history for this employee
+        $history = EmploymentHistory::where('employee_id', $employee->id)->get(); 
+
+        // Return the view with the employee and history data
+>>>>>>> 21da00b81c47fcf9d373c4a1150aa33edc9152f0
         return view('employees.history.index', compact('employee', 'history'));
     }
 
     public function documents($id)
+<<<<<<< HEAD
     {
         $employee = Employee::with('documents')->find($id);
         if (!$employee) {
@@ -201,3 +285,93 @@ class EmployeeController extends Controller
         return 'images/' . $imageName; // Return the relative path
     }
 }
+=======
+{
+    // Retrieve the employee and their documents
+    $employee = Employee::with('documents')->find($id);
+
+    // Check if the employee exists
+    if (!$employee) {
+        return redirect()->back()->with('error', 'Employee not found.');
+    }
+
+    // Return the view for the documents
+    return view('employees.documents.index', compact('employee'));
+}
+public function uploadDocument(Request $request, $id)
+{
+    // Validate the request data
+    $request->validate([
+        'name' => 'required|string|max:255',
+        'file' => 'required|file|mimes:pdf,xlsx,xls,docx,doc|max:2048', // Adjusted to include Excel and Word formats
+    ]);
+
+    if ($request->hasFile('file')) {
+        // Debugging: Check if the file is received
+        \Log::info('File received:', ['file' => $request->file('file')]);
+
+        // Handle the file upload
+        $path = $request->file('file')->store('documents', 'public');
+
+        // Create the new document
+        $document = new Document();
+        $document->employee_id = $id;
+        $document->name = $request->input('name');
+        $document->file_path = $path;
+        $document->save();
+
+        return redirect()->route('employee.documents', ['id' => $id])
+                         ->with('success', 'Document uploaded successfully.');
+    } else {
+        \Log::warning('No file uploaded');
+        return redirect()->back()->with('error', 'No file uploaded.');
+    }
+}
+
+public function contracts($id)
+{
+    // Retrieve the employee and their contracts
+    $employee = Employee::with('contracts')->find($id);
+
+    // Check if the employee exists
+    if (!$employee) {
+        return redirect()->back()->with('error', 'Employee not found.');
+    }
+
+    // Return the view for the contracts
+    return view('employees.contracts.index', compact('employee'));
+}
+
+public function uploadContract(Request $request, $id)
+{
+    // Validate the request data
+    $request->validate([
+        'name' => 'required|string|max:255',
+        'file' => 'required|file|mimes:pdf,xlsx,xls,docx,doc|max:2048', // Adjusted to include Excel and Word formats
+    ]);
+
+    if ($request->hasFile('file')) {
+        // Debugging: Check if the file is received
+        \Log::info('File received:', ['file' => $request->file('file')]);
+
+        // Handle the file upload
+        $path = $request->file('file')->store('contracts', 'public');
+
+        // Create the new contract
+        $contract = new Contract();
+        $contract->employee_id = $id;
+        $contract->name = $request->input('name');
+        $contract->file_path = $path;
+        $contract->save();
+
+        return redirect()->route('employee.contracts', ['id' => $id])
+                         ->with('success', 'Contract uploaded successfully.');
+    } else {
+        \Log::warning('No file uploaded');
+        return redirect()->back()->with('error', 'No file uploaded.');
+    }
+}
+
+
+}
+>>>>>>> 21da00b81c47fcf9d373c4a1150aa33edc9152f0

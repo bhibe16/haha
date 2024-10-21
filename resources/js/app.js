@@ -1,4 +1,5 @@
 
+<<<<<<< HEAD
 const toggleButton = document.getElementById('toggleSidebar');
 const sidebar = document.getElementById('sidebar');
 const hamburgerIcon = document.getElementById('hamburgerIcon');
@@ -81,6 +82,34 @@ updateIcon();
     // Dropdown menu toggle functionality
     
 
+=======
+    // Dark/Light mode toggle functionality
+    const themeToggle = document.getElementById('theme-toggle');
+    const rootElement = document.documentElement;
+
+    function updateIcon() {
+        if (rootElement.classList.contains('dark')) {
+            themeToggle.innerHTML = '<span class="material-icons">wb_sunny</span>';
+        } else {
+            themeToggle.innerHTML = '<span class="material-icons">brightness_2</span>';
+        }
+    }
+
+    themeToggle.addEventListener('click', () => {
+        rootElement.classList.toggle('dark');
+        const theme = rootElement.classList.contains('dark') ? 'dark' : 'light';
+        localStorage.setItem('theme', theme);
+        updateIcon();
+    });
+
+    updateIcon();
+
+    // Dropdown menu toggle functionality
+    document.getElementById('dropdownButton').addEventListener('click', function() {
+        const dropdownMenu = document.getElementById('dropdownMenu');
+        dropdownMenu.classList.toggle('hidden');
+    });
+>>>>>>> 21da00b81c47fcf9d373c4a1150aa33edc9152f0
 
     // Filter employees function
     function filterEmployees() {

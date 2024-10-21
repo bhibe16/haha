@@ -6,15 +6,21 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<<<<<<< HEAD
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
     @vite('resources/css/app.css')
     <title>HRIS</title>
+=======
+    @vite('resources/css/app.css')
+    <title>HRIS - Contracts</title>
+>>>>>>> 21da00b81c47fcf9d373c4a1150aa33edc9152f0
 </head>
 <body class="relative">
 
     <!-- Navbar -->
     <nav class="navbar">
         <div class="flex items-center">
+<<<<<<< HEAD
         </div>
         <h1 class="text-2xl flex-grow text-center">Human Resources Information System</h1>
         <div class="flex items-center space-x-4">
@@ -40,11 +46,54 @@
                         <button type="submit" class="flex items-center justify-between w-full text-left btn-logout px-2 py-1 text-xs"> <!-- Adjusted flex and justify -->
                             <span class="mr-2 whitespace-nowrap">Log Out</span> <!-- Adjusted margin for spacing -->
                             
+=======
+            <button id="menu-toggle" class="sm:hidden">
+                <span class="material-icons">menu</span>
+            </button>
+        </div>
+        <h1 class="text-2xl flex-grow text-center">Human Resources Information System</h1>
+        <div class="flex items-center space-x-4">
+            <div class="flex items-center space-x-1">
+                <span class="material-icons">access_time</span>
+                <span id="time" class="text-lg font-bold text-black dark:text-white"></span>
+            </div>
+            <button id="theme-toggle" class="material-icons cursor-pointer focus:outline-none">brightness_6</button>
+            <button class="material-icons cursor-pointer">account_circle</button>
+        </div>
+    </nav>
+
+    <!-- Sidebar -->
+    <aside id="default-sidebar" class="sidebar">
+        <div class="h-full px-3 py-4 overflow-y-auto">
+            <div class="flex justify-end sm:hidden">
+                <button id="sidebar-close">
+                    <span class="material-icons">close</span>
+                </button>
+            </div>
+            <br>
+            <ul class="space-y-2 font-medium">
+                <li class="flex justify-center">
+                    <a href="dashboard">
+                        <img src="{{ asset('images/logo.png') }}" alt="Logo" class="w-16 h-16">
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('employee.index') }}" class="hover-d">
+                        Employee Records
+                    </a>
+                </li>
+                <li>
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+                        <button type="submit" class="btn-logout">
+                            <span>Log Out</span>
+>>>>>>> 21da00b81c47fcf9d373c4a1150aa33edc9152f0
                         </button>
                     </form>
                 </li>
             </ul>
         </div>
+<<<<<<< HEAD
     </div>
 </div>
 
@@ -82,6 +131,9 @@
                     </a>
 
 </aside>
+=======
+    </aside>
+>>>>>>> 21da00b81c47fcf9d373c4a1150aa33edc9152f0
 
     <!-- Main Content Area -->
     <main class="maincontent p-4">
@@ -92,7 +144,11 @@
             @csrf
             <div class="mb-4">
                 <label for="name" class="block text-sm font-medium text-gray-700">Contract Name:</label>
+<<<<<<< HEAD
                 <input type="text" name="name" id="name" required class="mt-1 block w-lg"/>
+=======
+                <input type="text" name="name" id="name" required class="mt-1 block w-full"/>
+>>>>>>> 21da00b81c47fcf9d373c4a1150aa33edc9152f0
             </div>
             <div class="mb-4">
                 <label for="contract" class="block text-sm font-medium text-gray-700">Select Contract:</label>
@@ -107,6 +163,7 @@
         </form>
 
         <h2 class="text-xl font-semibold mt-8">Uploaded Contracts</h2>
+<<<<<<< HEAD
 
         @if($employee->contracts->isEmpty())
             <p>No contracts uploaded yet.</p>
@@ -132,6 +189,24 @@
         
         @if ($errors->any())
             <div class="alert alert-danger mt-4">
+=======
+        
+        @if($employee->contracts->isEmpty())
+            <p>No contracts uploaded yet.</p>
+        @else
+            <ul class="mt-4">
+                @foreach($employee->contracts as $contract)
+                    <li>
+                        <a href="{{ Storage::url($contract->file_path) }}" class="text-blue-500" target="_blank">{{ $contract->name }}</a>
+                        <span class="text-gray-500"> (Uploaded on {{ $contract->created_at->format('d-m-Y') }})</span>
+                    </li>
+                @endforeach
+            </ul>
+        @endif
+        
+        @if ($errors->any())
+            <div class="alert alert-danger">
+>>>>>>> 21da00b81c47fcf9d373c4a1150aa33edc9152f0
                 <ul>
                     @foreach ($errors->all() as $error)
                         <li>{{ $error }}</li>
@@ -142,6 +217,21 @@
     </main>
 
     @vite('resources/js/app.js')
+<<<<<<< HEAD
 
+=======
+    <script>
+        // Function to update time inside the icon
+        function updateTime() {
+            const timeElement = document.getElementById('time');
+            const currentTime = new Date().toLocaleTimeString();
+            timeElement.textContent = currentTime;
+        }
+
+        // Update the time every second
+        setInterval(updateTime, 1000);
+        updateTime(); // Call it initially to avoid delay
+    </script>
+>>>>>>> 21da00b81c47fcf9d373c4a1150aa33edc9152f0
 </body>
 </html>

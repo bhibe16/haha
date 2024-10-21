@@ -8,13 +8,18 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
     @vite('resources/css/app.css')
+<<<<<<< HEAD
     <title>HRIS</title>
+=======
+    <title>HRIS - Employment History</title>
+>>>>>>> 21da00b81c47fcf9d373c4a1150aa33edc9152f0
 </head>
 <body class="relative">
 
     <!-- Navbar -->
     <nav class="navbar">
         <div class="flex items-center">
+<<<<<<< HEAD
         </div>
         <h1 class="text-2xl flex-grow text-center">Human Resources Information System</h1>
         <div class="flex items-center space-x-4">
@@ -69,6 +74,33 @@
             <ul class=" space-y-2 font-medium">
                 <li class="flex justify-center">
                     <a href="{{ route('dashboard') }}">
+=======
+            <button id="menu-toggle" class="sm:hidden">
+                <span class="material-icons">menu</span>
+            </button>
+        </div>
+        <h1 class="text-2xl flex-grow text-center">Employee Employment History</h1>
+        <div class="flex items-center space-x-4">
+            <span class="material-icons cursor-pointer">search</span>
+            <span class="material-icons cursor-pointer">notifications</span>
+            <button id="theme-toggle" class="material-icons cursor-pointer focus:outline-none">brightness_6</button>
+            <button class="material-icons cursor-pointer">account_circle</button>
+        </div>
+    </nav>
+
+    <!-- Sidebar -->
+    <aside id="default-sidebar" class="sidebar">
+        <div class="h-full px-3 py-4 overflow-y-auto">
+            <div class="flex justify-end sm:hidden">
+                <button id="sidebar-close">
+                    <span class="material-icons">close</span>
+                </button>
+            </div>
+            <br>
+            <ul class=" space-y-2 font-medium">
+                <li class="flex justify-center">
+                    <a href="dashboard">
+>>>>>>> 21da00b81c47fcf9d373c4a1150aa33edc9152f0
                         <img src="{{ asset('images/logo.png') }}" alt="Logo" class="w-16 h-16"> <!-- Update the path accordingly -->
                     </a>
                 </li>
@@ -81,8 +113,40 @@
                         <span class="ml-3">Employee Records</span>
                     </a>
 
+<<<<<<< HEAD
                 </li>
 </aside>
+=======
+                    <!-- Dropdown Button -->
+                    <button id="dropdownButton" class="flex items-center justify-between w-full p-2 text-black dark:text-white rounded hover-d mt-1">
+                        <span>Others</span>
+                        <svg class="w-4 h-4 ml-2" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M5.5 8l4.5 4.5L14.5 8H5.5z"/>
+                        </svg>
+                    </button>
+                    
+                    <!-- Dropdown Menu -->
+                    <div id="dropdownMenu" class="absolute hidden bg-gray-800 text-white rounded shadow-lg mt-2 w-48">
+                        <a href="" class="block px-4 py-2 hover:bg-gray-700">Employee History</a>
+                        <a href="" class="block px-4 py-2 hover:bg-gray-700">Documents</a>
+                        <a href="" class="block px-4 py-2 hover:bg-gray-700">Contract</a>
+                    </div>
+                </li>
+                <li>
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+                        <button type="submit" class="btn-logout">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6-4v12" />
+                            </svg>
+                            <span class="ml-3">Log Out</span>
+                        </button>
+                    </form>
+                </li>
+            </ul>
+        </div>
+    </aside>
+>>>>>>> 21da00b81c47fcf9d373c4a1150aa33edc9152f0
 
 
     <!-- Main Content Area -->
@@ -135,15 +199,24 @@
                 @endforeach
             </tbody>
         </table>
+<<<<<<< HEAD
         <a href="{{ route('employee.index', $employee->id) }}">Back to Records</a>
         <!-- If no employment history available -->
         @if($history->isEmpty())
         
+=======
+        <a href="{{ route('employee.index', $employee->id) }}">Back to History</a>
+        <!-- If no employment history available -->
+        @if($history->isEmpty())
+>>>>>>> 21da00b81c47fcf9d373c4a1150aa33edc9152f0
             <p class="text-center text-gray-500 mt-4">No employment history records found.</p>
         @endif
     </main>
 
     @vite('resources/js/app.js')
+<<<<<<< HEAD
  
+=======
+>>>>>>> 21da00b81c47fcf9d373c4a1150aa33edc9152f0
 </body>
 </html>
