@@ -9,6 +9,7 @@ use App\Models\AdminHr;
 use App\Models\Document;
 use App\Models\Contract;
 use Illuminate\Support\Facades\Storage;
+use NoCaptcha\Facades\NoCaptcha;
 
 class EmployeeController extends Controller
 {
@@ -200,4 +201,6 @@ class EmployeeController extends Controller
         $imagePath = $image->storeAs('public/images', $imageName);
         return 'images/' . $imageName; // Return the relative path
     }
+
+   
 }
