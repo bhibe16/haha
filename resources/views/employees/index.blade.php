@@ -61,16 +61,17 @@
     
     <!-- Employee Cards -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        @foreach($employees as $employee)
-            <div class="employee-card bg-white dark:bg-gray-800 p-4 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 cursor-pointer" onclick="openModal({{ $employee->id }})">
-                <div class="flex items-center">
-                    <img src="{{ asset('storage/' . $employee->image) }}" alt="Employee Image" class="w-16 h-16 rounded-full object-cover">
-                    <div class="ml-4">
-                        <h2 class="text-lg font-bold dark:text-white">{{ $employee->First_name }} {{ $employee->Last_name }}</h2>
-                        <p class="text-gray-600 dark:text-gray-400">{{ $employee->Department }}</p>
-                        <p class="text-gray-600 dark:text-gray-400">{{ $employee->Position }}</p>
-                    </div>
-                </div>        
+    @foreach($employees as $employee)
+        <div class="employee-card bg-white dark:bg-gray-800 p-4 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 cursor-pointer" onclick="openModal({{ $employee->id }})">
+            <div class="flex items-center">
+                <img src="{{ asset('storage/' . $employee->image) }}" alt="Employee Image" class="w-16 h-16 rounded-full object-cover">
+                <div class="ml-4">
+                    <h2 class="text-lg font-bold dark:text-white">{{ $employee->First_name }} {{ $employee->Last_name }}</h2>
+                    <p class="text-gray-600 dark:text-gray-400">{{ $employee->Department }}</p>
+                    <p class="text-gray-600 dark:text-gray-400">{{ $employee->Position }}</p>
+                </div>
+            </div>
+     
             </div>
             
             <!-- Modal for displaying employee information -->
@@ -127,7 +128,7 @@
 </div>
 
                     <div class="employee-details grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <h3 class="text-xl font-semibold mb-4 col-span-1 md:col-span-2 center">Employee Information</h3>
+                        <h3 class="text-xl font-semibold mb-4 col-span-1 md:col-span-2 center">Employee Records</h3>
                     
                         <div class="detail-section bg-white dark:bg-[#404040] p-4 rounded-lg shadow-md mb-4">
                             <h4 class="text-lg font-semibold">Personal Details</h4>
