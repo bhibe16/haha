@@ -34,7 +34,7 @@
     
 
         <div class="w-full md:w-5/6 lg:w-3/4 mx-auto bg-white dark:bg-[#404040] p-6 rounded-lg shadow-lg">
-        <h2 class="text-2xl font-semibold mb-6 text-center text-gray-800 dark:text-white">Edit Employee</h2>
+        <h2 class="text-2xl font-semibold mb-6 text-center text-gray-800 dark:text-white">Edit Record</h2>
 
         @if ($errors->any())
     <div class="mb-4">

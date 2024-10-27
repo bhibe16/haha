@@ -107,7 +107,7 @@
 </div>
 
                     <div class="employee-details grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <h3 class="text-xl font-semibold mb-4 col-span-1 md:col-span-2 center">Employee Information</h3>
+                        <h3 class="text-xl font-semibold mb-4 col-span-1 md:col-span-2 center">Employee Record</h3>
                     
                         <div class="detail-section bg-white dark:bg-[#404040] p-4 rounded-lg shadow-md mb-4">
                             <h4 class="text-lg font-semibold">Personal Details</h4>
