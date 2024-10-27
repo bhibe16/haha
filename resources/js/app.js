@@ -105,4 +105,51 @@ updateIcon();
     window.closeModal = function(id) {
         document.getElementById('employeeModal' + id).classList.add('hidden');
     }
+    // Open modal for document upload
+    document.querySelectorAll('.document-button').forEach(button => {
+        button.addEventListener('click', function(e) {
+            e.preventDefault();
+            const employeeId = this.id.split('-')[1];
+            document.getElementById(`recaptchaModal-${employeeId}`).classList.remove('hidden');
+        });
+    });
+
+    // Open modal for history
+    document.querySelectorAll('a[id^="historyButton-"]').forEach(button => {
+        button.addEventListener('click', function(e) {
+            e.preventDefault();
+            const employeeId = this.id.split('-')[1];
+            document.getElementById(`recaptchaModal-${employeeId}`).classList.remove('hidden');
+        });
+    });
+
+    // Open modal for contract
+    document.querySelectorAll('a[id^="contractButton-"]').forEach(button => {
+        button.addEventListener('click', function(e) {
+            e.preventDefault();
+            const employeeId = this.id.split('-')[1];
+            document.getElementById(`recaptchaModal-${employeeId}`).classList.remove('hidden');
+        });
+    });
+
+    function closeModal(employeeId) {
+        document.getElementById(`recaptchaModal-${employeeId}`).classList.add('hidden');
+    }
+
+    document.querySelectorAll('form[id^="recaptchaForm-"]').forEach(form => {
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const response = grecaptcha.getResponse();
+            if (response.length === 0) {
+                alert('Please verify that you are not a robot.');
+            } else {
+                this.submit();
+            }
+        });
+    });
+
+    // Close the reCAPTCHA modal
+function closeRecaptchaModal(employeeId) {
+    document.getElementById(`recaptchaModal-${employeeId}`).classList.add('hidden');
+}
 

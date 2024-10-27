@@ -93,28 +93,28 @@
             <!-- Employee Card -->
             <div class="bg-card">
                 <img src="/images/4.jpg" alt="Profile Image" class="rounded-full w-24 h-24 mb-4">
-                <h3 class="font-bold">John Doe</h3>
+                <h3 class="font-bold">Romeo Stotomas</h3>
                 <p>Position: Manager</p>
                 <p>Department: HR</p>
             </div>
 
             <div class="bg-card">
                 <img src="/images/3.jpg" alt="Profile Image" class="rounded-full w-24 h-24 mb-4">
-                <h3 class="font-bold">Jane Smith</h3>
+                <h3 class="font-bold">Jay Ar Dolfo</h3>
                 <p>Position: Developer</p>
                 <p>Department: IT</p>
             </div>
 
             <div class="bg-card">
                 <img src="/images/2.jpeg" alt="Profile Image" class="rounded-full w-24 h-24 mb-4">
-                <h3 class="font-bold">Michael Brown</h3>
+                <h3 class="font-bold">Jonathan Alarcon</h3>
                 <p>Position: Accountant</p>
                 <p>Department: Finance</p>
             </div>
 
             <div class="bg-card">
                 <img src="/images/1.jpg" alt="Profile Image" class="rounded-full w-24 h-24 mb-4">
-                <h3 class="font-bold">Emily White</h3>
+                <h3 class="font-bold">Justine Shane Luza</h3>
                 <p>Position: Designer</p>
                 <p>Department: Marketing</p>
             </div>

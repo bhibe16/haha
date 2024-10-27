@@ -72,10 +72,27 @@
             </div>
 
             <!-- Department Field -->
-            <div class="mb-4">
-                <label for="department" class="block text-sm font-medium text-gray-700 dark:text-white">Department</label>
-                <input type="text" id="department" name="Department" placeholder="Department" value="{{ old('Department') }}" class="w-full p-2 border border-gray-300 rounded" required />
-            </div>
+            <div class="mb-4 relative">
+    <label for="departmentDropdown" class="block text-sm font-medium text-gray-700 dark:text-white">Department</label>
+
+    <!-- Dropdown button to show selected department -->
+    <button id="departmentDropdown" type="button" class="w-full p-2 border border-gray-300 rounded text-left relative" onclick="toggleDropdown()">
+        <span id="selectedDepartment">{{ old('Department') ? old('Department') : 'Select Department' }}</span>
+        <svg class="w-4 h-4 absolute right-2 top-1/2 transform -translate-y-1/2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+        </svg>
+    </button>
+
+    <!-- Dropdown menu with department choices -->
+    <div id="dropdownChoices" class="absolute w-full hidden bg-white shadow-lg mt-1 rounded-md z-10">
+        <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200" onclick="selectDepartment('HR')">HR</a>
+        <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200" onclick="selectDepartment('Finance')">Finance</a>
+        <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200" onclick="selectDepartment('Accountant')">Accountant</a>
+    </div>
+
+    <!-- Hidden input to hold the selected department value for form submission -->
+    <input type="hidden" id="department" name="Department" value="{{ old('Department') }}">
+</div>
 
             <!-- Position Field -->
             <div class="mb-4">
@@ -150,5 +167,28 @@
 </main>
 
 @vite('resources/js/app.js')
+
+<script>
+    // Toggle dropdown visibility
+    function toggleDropdown() {
+        document.getElementById('dropdownChoices').classList.toggle('hidden');
+    }
+
+    // Select a department and close dropdown
+    function selectDepartment(department) {
+        document.getElementById('selectedDepartment').innerText = department;
+        document.getElementById('department').value = department; // Update hidden input value
+        document.getElementById('dropdownChoices').classList.add('hidden');
+    }
+
+    // Close dropdown when clicking outside
+    window.addEventListener('click', function(event) {
+        const dropdownChoices = document.getElementById('dropdownChoices');
+        const departmentDropdown = document.getElementById('departmentDropdown');
+        if (!departmentDropdown.contains(event.target) && !dropdownChoices.contains(event.target)) {
+            dropdownChoices.classList.add('hidden');
+        }
+    });
+</script>
 </body>
 </html>
